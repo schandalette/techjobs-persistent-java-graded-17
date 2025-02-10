@@ -6,6 +6,7 @@ import jakarta.validation.constraints.Size;
 
 @Entity
 public class Employer extends AbstractEntity {
+
     @NotBlank
     @Size(max = 100)
     private String location;

@@ -17,7 +17,7 @@ public abstract class AbstractEntity {
     private int id;
 
     @NotBlank
-    @Size(max = 100)
+    @Size(max = 250)
     private String name;
 
     public int getId() {
@@ -41,8 +41,8 @@ public abstract class AbstractEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        AbstractEntity that = (AbstractEntity) o;
-        return id == that.id;
+        AbstractEntity entity = (AbstractEntity) o;
+        return id == entity.id;
     }
 
     @Override
