@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("skills")
-public class SkillController {
+public class SkillController{
 
     @Autowired
     private SkillRepository skillRepository;
@@ -34,9 +34,9 @@ public class SkillController {
     public String processAddSkillForm(@ModelAttribute @Valid Skill newSkill, Errors errors, Model model) {
 
         if (errors.hasErrors()) {
+            model.addAttribute("skills", skillRepository.findAll());
             return "skills/add";
         }
-
         skillRepository.save(newSkill);
         return "redirect:";
     }
@@ -46,11 +46,11 @@ public class SkillController {
 
         Optional<Skill> optSkill = skillRepository.findById(skillId);
         if (optSkill.isPresent()) {
-            Skill skill = optSkill.get();
-            model.addAttribute("skill", skill);
+            model.addAttribute("skill", optSkill.get());
             return "skills/view";
         } else {
-            return "redirect:../";
+            model.addAttribute("errorMessage", "Skill not found.");
+            return "redirect:/skills";
         }
 
     }
