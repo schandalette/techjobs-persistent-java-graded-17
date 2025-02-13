@@ -6,10 +6,10 @@
 
 <div th:replace="~{fragments :: page-header}"></div>
 
-<p th:unless="${employers} and ${employers.size()}">no jobs!</p>
-
 <div class="container body-content">
     <h2>Employers</h2>
+    <div th:if="${employers.isEmpty()}">  <p>No employers!</p>
+    </div>
     <ul>
         <li th:each="employer : ${employers}">
             <a th:href="@{'/employers/view/' + ${employer.id}}" th:text="${employer.name}"></a>
